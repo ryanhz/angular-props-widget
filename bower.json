@@ -1,0 +1,25 @@
+{
+    "name": "angular-props-widget",
+    "version": "0.0.1",
+    "authors": [
+        "Ryan Hu <huzhiren@gmail.com>"
+    ],
+    "description": "angular.js directive for jdorn's json-editor",
+    "license": "MIT",
+    "main": "src/angular-props-widget.js",
+    "keywords": [
+        "angular",
+        "directive",
+        "props-widget",
+        "form",
+        "schema"
+    ],
+    "ignore": [
+        "bower_components",
+        "node_modules"
+    ],
+    "dependencies": {
+        "json-editor": "~0.6.17",
+        "angular": "*"
+    }
+}
