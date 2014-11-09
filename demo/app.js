@@ -117,7 +117,7 @@ angular.module('demoApp', ['angular-props-widget']).config(function(PropsWidgetC
 				'Living Environment': {
 					type: 'string',
 					required: true,
-					'enum': ['simple decoration ','decoration','luxury decoration']
+					'enum': ['simple decoration','decoration','luxury decoration']
 				},
 				'Room Configuration': {
 					type: 'array',
@@ -125,7 +125,7 @@ angular.module('demoApp', ['angular-props-widget']).config(function(PropsWidgetC
 					format: 'checkbox',
 					items: {
 						type: 'string',
-						'enum':  ['bed ','cabinet ','table ','chair','sofa ','24 hours hot water']
+						'enum':  ['bed','cabinet','table','chair','sofa','24 hours hot water']
 					}
 				},
 				'facilities': {
@@ -134,7 +134,7 @@ angular.module('demoApp', ['angular-props-widget']).config(function(PropsWidgetC
 					format: 'checkbox',
 					items: {
 						type: 'string',
-						'enum':  ['Gym ','chess room','library', 'activity room ']
+						'enum':  ['Gym','chess room','library', 'activity room']
 					}
 				}
 			}

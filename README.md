@@ -1,4 +1,4 @@
-Properties Widget Angular directive
+Angular Properties Widget directive
 =============================
 
 A properties widget Angular directive that wraps [jdorn's json-editor](https://github.com/jdorn/json-editor).
