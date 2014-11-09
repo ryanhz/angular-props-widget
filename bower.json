@@ -4,7 +4,7 @@
     "authors": [
         "Ryan Hu <huzhiren@gmail.com>"
     ],
-    "description": "angular.js directive for jdorn's json-editor",
+    "description": "angular.js directive for json properties widget based on jdorn's json-editor",
     "license": "MIT",
     "main": "src/angular-props-widget.js",
     "keywords": [

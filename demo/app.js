@@ -8,7 +8,7 @@ angular.module('demoApp', ['angular-props-widget']).config(function(PropsWidgetC
 }).controller('AppController', function($scope) {
 
 	$scope.keyPropsSch = {
-		title: 'Product Properties',
+		title: 'House Properties',
 		type: 'object',
 		properties: {
 			'name': {

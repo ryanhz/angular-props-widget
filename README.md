@@ -1,9 +1,11 @@
 Properties Widget Angular directive
 =============================
 
-A directive that wraps [jdorn's json-editor](https://github.com/jdorn/json-editor).
+A properties widget Angular directive that wraps [jdorn's json-editor](https://github.com/jdorn/json-editor).
 
-Properties Widget  takes a JSON Schema and uses it to generate an HTML form.
+Inspired by and take advance of [rodikh's angular-json-editor](https://github.com/rodikh/angular-json-editor)
+
+Properties Widget support two way data binding of schema and value compare to [rodikh's angular-json-editor](https://github.com/rodikh/angular-json-editor). 
 
 For further information about supported schema properties and usage, check out the original [json-editor](https://github.com/jdorn/json-editor).
 
@@ -19,24 +21,58 @@ Install via bower
 
     bower install angular-props-widget --save
     
-Then include the directive and json-editor in your html (you can also use the minified versions)
+Then include the directive and json-editor in your html
     
 ```html
 <script src="bower_components/json-editor/dist/jsoneditor.js"></script>
-<script src="bower_components/angular-props-widget/angular-props-widget.js"></script>
+<script src="bower_components/angular-props-widget/dist/angular-props-widget.min.js"></script>
 ```
 
 Usage
 -----
 
-The directive supports both synchronous and asynchronous values, all values can be either a scope object, or a promise returned from $q, $http, $timeout, $resource etc.
-Please check out `demo/index.html` and `demo/app.js` for an example usage of both scenarios.
+The usage of this directive is quite straightforward: you create a schema in angularjs scope like so:
 
-### Validation
-The directive exposes an `isValid` property on the scope, which can be used to enable/disable show/hide buttons using `ng-disabled/ng-enabled` or `ng-hide/ng-show`.
-```html
-<button type="button" ng-disabled="!isValid">Button 1</button>
+```javascript
+$scope.keyPropsSch = {
+	title: 'House Properties',
+	type: 'object',
+	properties: {
+		'name': {
+			type: 'string',
+			required: true,
+			minLength: 1
+		},
+		'years': {
+			type: 'integer',
+			required: true,
+			min: 0
+		},
+		'facilities': {
+			type: 'array',
+			uniqueItems: true,
+			format: 'checkbox',
+			items: {
+				type: 'string',
+				'enum': ['Air Condition', 'Hot Water', 'TV', 'Washing Machine']
+			}
+		}
+	}
+};
 ```
+and an empty value to hold the value of props-widget:
+
+```javascript
+$scope.myKeyProps = {};
+```
+
+Then you declare a props-widget component to bind the schema and value like so:
+
+```html
+<props-widget schema="keyPropsSch" ng-model="myKeyProps"/>
+```
+
+That's it, you now have a widget that can edit the value of type of the schema!
 
 Building
 ---------
