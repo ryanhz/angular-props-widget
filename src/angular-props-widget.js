@@ -12,7 +12,7 @@ var mergeProps = function (dest, src) {
 	}
 };
 
-angular.module('angular-props-widget', []).constant('PropsWidgetConfig', {
+angular.module('ng').constant('PropsWidgetConfig', {
 	iconlib: 'bootstrap3',
 	theme: 'bootstrap3',
 	'disable_collapse': true,
