@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('demoApp', ['props.widget']).config(function(PropsWidgetConfig) {
+angular.module('demoApp', []).config(function(PropsWidgetConfig) {
 	// angular-props-widget configuration
 	PropsWidgetConfig.iconlib = 'bootstrap3';
 	PropsWidgetConfig.theme = 'bootstrap3';
