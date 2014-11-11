@@ -23,13 +23,13 @@
     </button>
 	
 	<div>
-		<props-widget schema="keyPropsSch" ng-model="myKeyProps"/>
+		<props-widget title="商品属性" schema="keyPropsSch" ng-model="myKeyProps"/>
 	</div>
     <div>
-		<props-widget schema="skuPropsSch" ng-model="mySkuProps"/>
+		<props-widget title="产品规格" schema="skuPropsSch" ng-model="mySkuProps"/>
 	</div>
 	<div>
-		<sku-table schema="skuTableSch" sku-props="mySkuProps" ng-model="mySkuTable" />
+		<sku-table title="SKU表" schema="skuPropsSch" sku-props="mySkuProps" ng-model="mySkuTable" />
 	</div>
 	
 </div>

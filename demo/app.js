@@ -1,10 +1,13 @@
 'use strict';
 
-angular.module('demoApp', []).config(function(PropsWidgetConfig) {
+angular.module('demoApp', ['props.widget']).config(function(PropsWidgetConfig) {
 	// angular-props-widget configuration
 	PropsWidgetConfig.iconlib = 'bootstrap3';
 	PropsWidgetConfig.theme = 'bootstrap3';
-	//PropsWidgetConfig.language = 'zh';
+	PropsWidgetConfig.sku_table_label_price = '价格';
+	PropsWidgetConfig.sku_table_label_stock = '库存';
+	PropsWidgetConfig.sku_table_label_image = '图片';
+	PropsWidgetConfig.language = 'zh';
 }).controller('AppController', function($scope) {
 
 	$scope.keyPropsSch = {
@@ -60,44 +63,7 @@ angular.module('demoApp', []).config(function(PropsWidgetConfig) {
 		}
 	};
 
-	$scope.mySkuProps = {};
-
-	$scope.skuTableSch = {
-		type: 'array',
-		title: 'SKU Table',
-		format: 'table',
-		uniqueItems: true,
-		items: {
-			type: 'object',
-			properties: {
-				'color': {
-					type: 'string',
-					required: true,
-					readonly: true
-				},
-				'size': {
-					type: 'string',
-					required: true,
-					readonly: true
-				},
-				price: {
-					type: 'number',
-					required: true
-				},
-				stock: {
-					type: 'integer',
-					required: true
-				},
-				image: {
-					type: 'string',
-					media: {
-						binaryEncoding: 'base64',
-						mediaType: 'image/png'
-					},
-					required: true
-				}
-			}
-		}
+	$scope.mySkuProps = {
 	};
 
 	$scope.mySkuTable = [];
@@ -195,6 +161,52 @@ angular.module('demoApp', []).config(function(PropsWidgetConfig) {
 		}];
 		state = (state + 1) % keyPropsSchList.length;
 		$scope.keyPropsSch = keyPropsSchList[state];
+		
+		var skuPropSchList =[
+			{
+				type: 'object',
+				properties: {
+					'套餐': {
+						type: 'array',
+						uniqueItems: true,
+						format: 'checkbox',
+						items: {
+							type: 'string',
+							'enum': ['套餐1', '套餐2', '套餐3']
+						}
+					}
+				}
+			},
+			{
+				type: 'object',
+				properties: {
+					'方向': {
+						type: 'array',
+						uniqueItems: true,
+						format: 'checkbox',
+						items: {
+							type: 'string',
+							'enum': ['东', '西', '南', '北']
+						}
+					}
+				}
+			},
+			{
+				type: 'object',
+				properties: {
+					'楼层': {
+						type: 'array',
+						uniqueItems: true,
+						format: 'checkbox',
+						items: {
+							type: 'number',
+							'enum': [1, 2, 3, 4]
+						}
+					}
+				}
+			}
+		];
+		$scope.skuPropsSch = skuPropSchList[state];
 	};
 
 
