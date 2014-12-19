@@ -1,6 +1,7 @@
 'use strict';
 
 /*jslint sub: true*/
+/* global _ */
 var isArray = function (obj) {
 	return Object.prototype.toString.call(obj) === '[object Array]';
 };
@@ -152,6 +153,27 @@ angular.module('ng').constant('PropsWidgetConfig', {
 ])
 	.directive('skuTable', ['$q', 'PropsWidgetConfig',
 		function ($q, PropsWidgetConfig) {
+
+			var sort = function (o) {
+				if (!o) {
+					return o;
+				}
+				var sorted = {},
+				key, a = [];
+
+				for (key in o) {
+					if (o.hasOwnProperty(key)) {
+						a.push(key);
+					}
+				}
+
+				a.sort();
+
+				for (key = 0; key < a.length; key+=1) {
+					sorted[a[key]] = o[a[key]];
+				}
+				return sorted;
+			};
 
 			var cartesianProductOf = function (array) {
 				return array.reduce(function (a, b) {
@@ -357,6 +379,7 @@ angular.module('ng').constant('PropsWidgetConfig', {
 										}
 										var crossProducts = cartesianProductOf(arrays);
 
+										var oldValues = scope.value.slice(0);
 										scope.value.length = 0;
 										crossProducts.forEach(function (crossProduct) {
 											var extSku = {
@@ -369,6 +392,18 @@ angular.module('ng').constant('PropsWidgetConfig', {
 												key = keys[i];
 												value = crossProduct[i];
 												extSku.skuProps[key] = value;
+											}
+											extSku.skuProps = sort(extSku.skuProps);
+											if (oldValues) {
+												for (var j = 0; j < oldValues.length; j += 1) {
+													var oldValue = oldValues[j];
+													if (_.isEqual(extSku.skuProps, oldValue.skuProps)) {
+														extSku.price = oldValue.price;
+														extSku.stock = oldValue.stock;
+														extSku.image = oldValue.image;
+														break;
+													}
+												}
 											}
 											scope.value.push(extSku);
 										});
